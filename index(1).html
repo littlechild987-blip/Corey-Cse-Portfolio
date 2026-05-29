@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corey Wan | Professional Online Portfolio</title>
+    <style>
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        :root {
+            --primary-dark: #1f1035;       /* Deep purple background */
+            --primary-purple: #3b1e6d;     /* Header & structural element purple */
+            --accent-purple: #6b3fa0;      /* Vibrant interactive purple */
+            --light-purple: #f3effa;       /* Clean container backgrounds */
+            --text-dark: #221c2b;          /* High contrast text color */
+            --text-muted: #584f66;         /* Secondary descriptive text */
+            --white: #ffffff;
+            --max-width: 1100px;
+            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-stack);
+            background-color: #f7f5fa;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        body {
+            padding-top: 70px; /* Accounts for fixed navigation bar */
+        }
+
+        /* --- STRUCTURE & WHITE SPACE --- */
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e1daf0;
+        }
+
+        /* --- NAVIGATION (Site Set-up & Readability) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-purple);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .site-name {
+            color: var(--white);
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #dcd1f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--white);
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #dcd1f0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- TYPOGRAPHY (Headings & Content consistency) --- */
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        /* --- ABOUT ME SECTION --- */
+        .about-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-left: 5px solid var(--accent-purple);
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* --- RESUME SECTION (Tables & Grid Clean Alignment) --- */
+        .resume-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .resume-block {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .resume-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .resume-table td {
+            padding: 15px 10px;
+            vertical-align: top;
+            border-bottom: 1px solid #f0edf5;
+        }
+
+        /* Tight control over table column white space for clear sections */
+        .resume-table td.date-col {
+            width: 25%;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .resume-table td.detail-col {
+            width: 75%;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .institution {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .resume-table ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        /* --- PROJECTS SECTION (Image Layout & Two Projects) --- */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            display: grid;
+            grid-template-columns: 40% 60%;
+        }
+
+        /* Ensures responsive collapse if screen is small */
+        @media (max-width: 768px) {
+            .project-card {
+                grid-template-columns: 100%;
+            }
+            .resume-table td.date-col, .resume-table td.detail-col {
+                width: 100%;
+                display: block;
+                padding: 5px 0;
+            }
+        }
+
+        .project-image-container {
+            background-color: var(--light-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            min-height: 250px;
+            border-right: 1px solid #f0edf5;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-details p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .project-details strong {
+            color: var(--primary-purple);
+        }
+
+        .project-links {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f0edf5;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-purple);
+            color: var(--white);
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-purple);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-purple);
+            border: 1px solid var(--accent-purple);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light-purple);
+            color: var(--primary-purple);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: #a496ba;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE NAVIGATION BAR -->
+    <header>
+        <div class="nav-container">
+            <!-- EDIT HERE: Change to your custom site name or your name -->
+            <a href="#home" class="site-name">Corey Wan Portfolio</a>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <div id="home" class="hero">
+        <!-- EDIT HERE: Title and Subtitle -->
+        <h1>Welcome to My Academic & Engineering Portfolio</h1>
+        <p>Showcasing computer science, technical problem solving, and hands-on engineering projects.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- ABOUT ME SECTION -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p class="section-subtitle">A brief introduction to my academic journey, goals, and passions.</p>
+            
+            <div class="about-content">
+                <!-- EDIT HERE: Craft your clear, mistake-free bio statement below -->
+                <p>     My plan for my career in the future is to somehow be involved with computers. I just have always been interested in computers, and I like learning about them and seeing ways that they can be used to solve problems. To help me achieve my goal, I will be taking the STEM-centered set of courses and all the math courses offered as advanced placement classes..
+                <p>     While at my high school, I’ve been learning skills that relate to this career. Taking advanced classes has helped me learn how to handle harder assignments, and stay organized. I’ve also learned a lot from working on group projects, especially when it comes to sharing ideas. These experiences have helped me grow both academically and as a person
+                <p>     From these experiences, I’ve learned that I can get through hard assignments and stay patient when figuring things out. I’ve also learned that I like working with other people, whether it’s helping someone understand something or working together on a group project. These experiences have made me interested in a job related to computers, where I can keep learning and getting better at my skills. Thanks for taking the time to read my introduction.
+
+            
+            </div>
+        </section>
+
+
+        <!-- RESUME SECTION -->
+        <section id="resume">
+            <h2>Resume</h2>
+            <p class="section-subtitle">A timeline of my educational achievements, technical skills, and core competencies.</p>
+            
+            <div class="resume-layout">
+                
+                <!-- Education Block -->
+                <div class="resume-block">
+                    <iframe src="Resume-CW.pdf" width="100%" height="600px">
+  This browser does not support PDFs. Please download the PDF to view it.
+                    </iframe>
+                 <!-- <h3>Education</h3>
+                 <!--   <table class="resume-table">
+                    <!--    <!-- EDIT HERE: Update schools, dates, and bullet points -->
+                    <!--    <tr>
+                    <!--        <td class="date-col">Aug 2025 - Present</td>
+                   <!--         <td class="detail-col">
+                    <!--            <div class="job-title">High School Diploma Track (STEM Focus)</div>
+                    <!--            <div class="institution">Advanced Placement & Compsci Coursework</div>
+                    <!--            <p>Maintaining focus on advanced mathematics and computing sciences.</p>
+                    <!--        </td>
+                    <!--    </tr>
+                    <!--</table>
+                </div>
+
+                <!-- Technical Experience Block -->
+                
+
+                <!-- Technical Skills List Block -->
+                <div class="resume-block">
+                    <h3>Skills & Toolsets</h3>
+                    <table class="resume-table">
+                        <tr>
+                            <td class="date-col">Languages</td>
+                            <td class="detail-col">Python, JavaScript, C++</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <p class="section-subtitle">A detailed look at engineering tasks, complete with goals, skills, and assets.</p>
+            
+            <div class="projects-grid">
+                
+                <!-- PROJECT 1 CARD -->
+                <div class="project-card">
+                   <div class="project-image-container">
+                        <img src="unnamed (1).png" alt="Description of image">
+                   </div>
+                    <div class="project-info">
+                        <div class="project-details">
+                            <!-- EDIT HERE: Update project metadata, objective, tasks, learnings -->
+                            <div class="project-meta">Project #1</div>
+                            <h3>Earthquake Tracker/Game</h3>
+                            
+                            <p><strong>Description:</strong> A Website that consists of a web rpg for earthquake safety as well as an earthquake locator Video ( not edited ): https://bit.ly/4k0E3yt.</p>
+                            <p><strong>Responsibilities:</strong> Programmed the majority of the web rpg as well as assisting in the API section a bit.</p>
+                            <p><strong>Skills Exemplified:</strong> Python, API</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://bit.ly/4k0E3yt" class="btn">View Live Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2 CARD -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <!-- EDIT HERE: Replace with an actual project image link if you have one, or leave as placeholder -->
+                        <img src="pics.png" alt="Description of image">
+
+                    </div>
+                    <div class="project-info">
+                        <div class="project-details">
+                            <!-- EDIT HERE: Update project metadata, objective, tasks, learnings -->
+                            <div class="project-meta">Project #2</div>
+                            <h3>The Watney Project</h3>
+                            
+                            <p><strong>Objective:</strong>A program that could accurately translate any string into a message in ascii form through accurate rotations and maneuvers</p>
+                            <p><strong>Responsibilities:</strong>Using the vex website, I was the main coder for the entire project</p>
+                        </div>
+                        <div class="project-links">
+                            <!-- EDIT HERE: Link to your project code or rubric documents -->
+                            <a href="https://docs.google.com/presentation/d/1mqhy-SzdEedQsyl_Gs_Tnuakg-fsIHXAwRNcMPUYR9c/edit?usp=sharing" class="btn">View Slide Deck</a>
+        
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- SITE FOOTER -->
+    <footer>
+        <p>&copy; 2026 Corey Wan. All Rights Reserved. Prepared for Academic Assessment.</p>
+    </footer>
+
+</body>
+</html>
